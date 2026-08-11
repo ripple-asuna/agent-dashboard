@@ -1,6 +1,6 @@
 {
-	"name": "agent-dashboard",
-	"version": "0.1.1",
+	"name": "agentic-vault-dashboard",
+	"version": "0.1.2",
 	"description": "Track AI agent workflows, Vault activity, tasks, projects, and research feeds in one dashboard.",
 	"author": "Jason",
 	"main": "main.js",
