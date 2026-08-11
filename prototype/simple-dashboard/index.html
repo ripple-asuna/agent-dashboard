@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content="light" />
+		<meta name="description" content="Static Agent Dashboard UI prototype for Obsidian." />
+		<title>Ripple's Agent Dashboard</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main class="agent-dashboard">
+			<div class="dashboard-shell">
+				<header class="vault-header">
+					<div class="vault-identity">
+						<p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span>Agentic vault</p>
+						<h1>Ripple's Agent Dashboard</h1>
+					</div>
+
+					<div class="header-controls">
+						<div class="live-status" aria-label="Three agents ready">
+							<span class="live-badge"><span aria-hidden="true"></span>Live</span>
+							<span class="agent-count">3 agents ready</span>
+						</div>
+						<div class="sync-meta">
+							<span class="sync-label">Vault link</span>
+							<time id="last-sync">Last sync 09:42</time>
+						</div>
+						<button class="refresh-button" id="refresh-button" type="button">
+							<svg aria-hidden="true" viewBox="0 0 24 24">
+								<path d="M20 6v5h-5M4 18v-5h5" />
+								<path d="M18.2 9A7 7 0 0 0 6.1 6.5L4 11M5.8 15A7 7 0 0 0 17.9 17.5L20 13" />
+							</svg>
+							<span>Refresh</span>
+						</button>
+					</div>
+				</header>
+
+				<nav class="section-tabs" role="tablist" aria-label="Dashboard sections">
+					<button id="tab-overview" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-overview" tabindex="0" data-tab="overview">
+						Overview
+					</button>
+					<button id="tab-today" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-today" tabindex="-1" data-tab="today">
+						Today
+					</button>
+					<button id="tab-vault" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-vault" tabindex="-1" data-tab="vault">
+						Vault
+					</button>
+					<button id="tab-pulse" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-pulse" tabindex="-1" data-tab="pulse">
+						Pulse
+					</button>
+				</nav>
+
+				<div class="dashboard-panels">
+					<section id="panel-overview" class="tab-panel" role="tabpanel" aria-labelledby="tab-overview" data-panel="overview">
+						<div class="status-rail" aria-label="Current vault summary">
+							<div class="rail-intro">
+								<span class="rail-label">Daily operating state</span>
+								<strong>Knowledge flow is stable</strong>
+							</div>
+							<div class="rail-metric"><span>Capture</span><strong>12 notes</strong><i><b style="--fill: 74%"></b></i></div>
+							<div class="rail-metric"><span>Routing</span><strong>76%</strong><i><b style="--fill: 76%"></b></i></div>
+							<div class="rail-metric"><span>Agent queue</span><strong>1 waiting</strong><i><b style="--fill: 32%"></b></i></div>
+						</div>
+
+						<section class="metrics-grid" aria-label="Vault metrics">
+							<article class="metric-card">
+								<div class="card-kicker"><span>Vault health score</span><span class="metric-code">HLT</span></div>
+								<div class="metric-body">
+									<div class="metric-copy"><strong id="health-value">86</strong><span class="positive-delta" id="health-delta">+4 this week</span></div>
+									<div class="health-ring" role="img" aria-label="Vault health score 86 out of 100"><span>86%</span></div>
+								</div>
+								<p class="metric-caption">Links, metadata, and orphan notes are within range.</p>
+							</article>
+
+							<article class="metric-card">
+								<div class="card-kicker"><span>Inbox backlog</span><span class="metric-code">INB</span></div>
+								<div class="metric-body metric-body--stacked">
+									<div class="metric-copy"><strong id="inbox-value">17</strong><span id="inbox-detail">9d oldest, 4 need routing</span></div>
+									<div class="age-rail" aria-label="Inbox age distribution">
+										<span class="age-cell hot"></span><span class="age-cell hot"></span><span class="age-cell warm"></span><span class="age-cell warm"></span><span class="age-cell"></span><span class="age-cell"></span><span class="age-cell"></span><span class="age-cell"></span><span class="age-cell"></span>
+									</div>
+								</div>
+								<p class="metric-caption">Four notes are waiting for a destination folder.</p>
+							</article>
+
+							<article class="metric-card">
+								<div class="card-kicker"><span>Task flow</span><span class="metric-code">TSK</span></div>
+								<div class="metric-body metric-body--stacked">
+									<div class="metric-copy metric-copy--row"><strong id="task-flow-value">67%</strong><span id="task-flow-detail">12 today, 3 overdue</span></div>
+									<div class="flow-track" role="progressbar" aria-label="Task completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67"><span></span></div>
+									<div class="flow-legend"><span>Done 8</span><span>Open 4</span></div>
+								</div>
+							</article>
+						</section>
+
+						<section class="activity-card" aria-labelledby="activity-title">
+							<header class="section-header">
+								<div><p class="section-index">Activity / 365d</p><h2 id="activity-title">Vault note creation</h2></div>
+								<p class="section-stat" id="activity-summary">180 active note days · Jul 2025–Jun 2026</p>
+							</header>
+							<div class="heatmap-scroll" tabindex="0" aria-label="Scrollable note creation heatmap">
+								<div class="heatmap-frame">
+									<div class="month-row" id="month-row" aria-hidden="true"></div>
+									<div class="heatmap-content">
+										<div class="weekday-labels" aria-hidden="true"><span>Mon</span><span>Wed</span><span>Fri</span></div>
+										<div class="heatmap-grid" id="heatmap-grid" role="img" aria-label="Daily note creation activity from July 2025 to June 2026"></div>
+									</div>
+								</div>
+							</div>
+							<footer class="activity-footer">
+								<p><span class="pulse-mark" aria-hidden="true"></span>Steady writing rhythm detected across 12 months.</p>
+								<div class="heat-legend" aria-label="Heatmap color legend"><span>Less</span><i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>More</span></div>
+							</footer>
+						</section>
+
+						<section class="split-grid overview-lists">
+							<article class="data-card" aria-labelledby="recent-notes-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">Vault / changed</p><h2 id="recent-notes-title">Recent notes</h2></div><span class="list-count">5 files</span></header>
+								<ul class="compact-list" id="recent-notes-list"></ul>
+							</article>
+							<article class="data-card" aria-labelledby="agent-runs-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">Agents / latest</p><h2 id="agent-runs-title">Agent runs</h2></div><span class="list-count">4 runs</span></header>
+								<ul class="compact-list" id="agent-runs-list"></ul>
+							</article>
+						</section>
+					</section>
+
+					<section id="panel-today" class="tab-panel" role="tabpanel" aria-labelledby="tab-today" data-panel="today" hidden>
+						<div class="split-grid today-top">
+							<article class="data-card capture-card" aria-labelledby="capture-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">Quick capture</p><h2 id="capture-title">Idea capture</h2></div><span class="list-count">Inbox</span></header>
+								<form id="capture-form" class="capture-form">
+									<label for="capture-name">Note title</label>
+									<input id="capture-name" name="title" type="text" placeholder="A useful thought to keep…" required />
+									<label for="capture-body">Context</label>
+									<textarea id="capture-body" name="body" rows="7" placeholder="Add enough context for your future self."></textarea>
+									<div class="capture-footer"><span>Saved to /Inbox</span><button type="submit">Capture note</button></div>
+								</form>
+							</article>
+
+							<article class="data-card" aria-labelledby="tasks-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">Focus / today</p><h2 id="tasks-title">Today tasks</h2></div><span class="list-count" id="task-count">5 items</span></header>
+								<div class="task-progress"><span><b id="task-done-count">1</b> of 5 complete</span><i><b></b></i></div>
+								<ul class="data-list task-list" id="task-list"></ul>
+							</article>
+						</div>
+
+						<article class="data-card project-card" aria-labelledby="projects-title">
+							<header class="section-header section-header--compact"><div><p class="section-index">Execution / active</p><h2 id="projects-title">Project tracking</h2></div><span class="list-count" id="project-count">4 projects</span></header>
+							<div class="table-scroll" tabindex="0">
+								<table>
+									<thead><tr><th>Status</th><th>Name</th><th>Progress</th><th>Due date</th><th>Path</th><th>Tags</th></tr></thead>
+									<tbody id="project-table-body"></tbody>
+								</table>
+							</div>
+						</article>
+					</section>
+
+					<section id="panel-vault" class="tab-panel" role="tabpanel" aria-labelledby="tab-vault" data-panel="vault" hidden>
+						<section class="diagnostic-grid" aria-label="Vault diagnostics">
+							<article class="diagnostic-card"><p>Vault health score</p><div><strong data-diagnostic="health">86</strong><span class="diagnostic-ring ring-green">Score</span></div><small>Overall score · +4 this week</small></article>
+							<article class="diagnostic-card"><p>Link integrity</p><div><strong data-diagnostic="links">72%</strong><span class="diagnostic-ring ring-yellow">Links</span></div><small>38 broken · 84 orphan notes</small></article>
+							<article class="diagnostic-card"><p>Metadata coverage</p><div><strong data-diagnostic="metadata">78%</strong><span class="diagnostic-ring ring-coral">YAML</span></div><small>214 notes missing required fields</small></article>
+						</section>
+
+						<section class="audit-grid">
+							<article class="data-card"><header class="section-header section-header--compact"><div><p class="section-index">Routing</p><h2>Inbox files</h2></div><span class="list-count" id="audit-inbox-count">0</span></header><ul class="compact-list audit-list" id="audit-inbox"></ul></article>
+							<article class="data-card"><header class="section-header section-header--compact"><div><p class="section-index">Graph</p><h2>Orphan notes</h2></div><span class="list-count" id="audit-orphans-count">0</span></header><ul class="compact-list audit-list" id="audit-orphans"></ul></article>
+							<article class="data-card"><header class="section-header section-header--compact"><div><p class="section-index">Metadata</p><h2>Missing front matter</h2></div><span class="list-count" id="audit-frontmatter-count">0</span></header><ul class="compact-list audit-list" id="audit-frontmatter"></ul></article>
+							<article class="data-card"><header class="section-header section-header--compact"><div><p class="section-index">Integrity</p><h2>Broken links</h2></div><span class="list-count" id="audit-broken-count">0</span></header><ul class="compact-list audit-list" id="audit-broken"></ul></article>
+						</section>
+					</section>
+
+					<section id="panel-pulse" class="tab-panel" role="tabpanel" aria-labelledby="tab-pulse" data-panel="pulse" hidden>
+						<nav class="command-bar" aria-label="Agent actions">
+							<button class="command-button" type="button" data-action="new-diary"><span class="command-glyph" aria-hidden="true">＋</span><span class="command-label">New diary</span></button>
+							<button class="command-button" type="button" data-action="deep-research"><span class="command-glyph" aria-hidden="true">⌕</span><span class="command-label">Deep research</span></button>
+							<button class="command-button command-button--signal" type="button" data-action="today-feeds"><span class="command-glyph" aria-hidden="true">↯</span><span class="command-label">Today Feeds</span></button>
+							<button class="command-button" type="button" data-action="inbox-ingest"><span class="command-glyph" aria-hidden="true">↓</span><span class="command-label">Inbox ingest</span></button>
+							<button class="command-button" type="button" data-action="vault-lint"><span class="command-glyph" aria-hidden="true">✓</span><span class="command-label">Vault lint</span></button>
+						</nav>
+
+						<section class="pulse-grid">
+							<article class="data-card pulse-card"><header class="section-header section-header--compact"><div><p class="section-index">Agent intake</p><h2>Research funnel</h2></div><span class="list-count">5 saved today</span></header><div class="funnel-list" id="research-funnel"></div></article>
+							<article class="data-card pulse-card"><header class="section-header section-header--compact"><div><p class="section-index">Signals</p><h2>Source mix</h2></div><span class="list-count">128 fetched</span></header><div class="source-bar" aria-label="Source mix"><span class="source-github"></span><span class="source-rss"></span><span class="source-news"></span><span class="source-mail"></span></div><ul class="source-legend"><li><i class="source-github"></i>GitHub 34%</li><li><i class="source-rss"></i>RSS 27%</li><li><i class="source-news"></i>News 23%</li><li><i class="source-mail"></i>Email 16%</li></ul></article>
+							<article class="data-card pulse-card trend-card"><header class="section-header section-header--compact"><div><p class="section-index">Research field</p><h2>Agent trend matrix</h2></div><span class="list-count">6 topics</span></header><div class="trend-matrix" id="trend-matrix"></div></article>
+						</section>
+
+						<section class="split-grid pulse-lists">
+							<article class="data-card" aria-labelledby="today-feeds-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">RSS + GitHub</p><h2 id="today-feeds-title">Today Feeds</h2></div><span class="list-count">5 signals</span></header>
+								<ul class="compact-list feed-list" id="today-feeds-list"></ul>
+							</article>
+							<article class="data-card" aria-labelledby="pulse-runs-title">
+								<header class="section-header section-header--compact"><div><p class="section-index">Automation</p><h2 id="pulse-runs-title">Agent runs</h2></div><span class="list-count">Live queue</span></header>
+								<ul class="compact-list" id="pulse-agent-runs-list"></ul>
+							</article>
+						</section>
+					</section>
+				</div>
+
+				<footer class="dashboard-footer"><span>Agent Dashboard · static architecture prototype</span><span>Local-first / no network activity</span></footer>
+			</div>
+			<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+		</main>
+		<script src="script.js"></script>
+	</body>
+</html>
