@@ -34,7 +34,7 @@ After the plugin is accepted into the Obsidian community directory:
 Download `main.js`, `manifest.json`, and `styles.css` from the matching GitHub release. Copy them into:
 
 ```text
-<Vault>/.obsidian/plugins/agent-dashboard/
+<Vault>/.obsidian/plugins/agentic-vault-dashboard/
 ```
 
 Reload Obsidian and enable **Agent Dashboard** under **Settings → Community plugins**.

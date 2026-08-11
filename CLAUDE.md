@@ -1,7 +1,7 @@
 # Agent Dashboard development rules
 
 - This is an Obsidian community plugin written in TypeScript. It is not an Obsidian Vault.
-- The plugin ID is `agent-dashboard`, the display name is `Agent Dashboard`, and the version is `0.1.0`.
+- The plugin ID is `agentic-vault-dashboard`, the display name is `Agent Dashboard`, and the version is `0.1.2`.
 - Common commands: `npm install`, `npm run dev`, `npm run build`, and `npm run lint`.
 - The final Obsidian plugin directory only needs `main.js`, `manifest.json`, and `styles.css`.
 - Prefer Obsidian's documented public APIs; do not depend on undocumented internal APIs.
